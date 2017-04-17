@@ -17,7 +17,7 @@
 // Altitude (in meters) at which we will cut away
 #define CUTAWAY_ALTITUDE 304.8
 // Dwell time (in milliseconds) to leave CUTAWAY_PIN high
-#define CUTAWAY_DWELL 3000
+#define CUTAWAY_DWELL 9000
 
 // This code shows how to listen to the GPS module in an interrupt
 // which allows the program to have more 'freedom' - just parse
@@ -195,6 +195,7 @@ void useInterrupt(boolean v) {
 /* Activate the cut-away circuit */
 
 void cutAway(char* msg){
+   Serial.print("Cutaway!! ");  // TODO: write to file also
    Serial.println(msg);
    digitalWrite(CUTAWAY_PIN, HIGH);  
    did_cutaway = true;
@@ -230,7 +231,7 @@ void loop() {
     }
 
     // Sentence parsed! 
-    Serial.println("OK");
+    //Serial.println("OK");
     if (LOG_FIXONLY && !GPS.fix) {
       Serial.print("No Fix");
       return;
@@ -243,26 +244,31 @@ void loop() {
     if (stringsize != logfile.write((uint8_t *)stringptr, stringsize))    //write the string to the SD file
         error(4);
     if (strstr(stringptr, "RMC") || strstr(stringptr, "GGA"))   logfile.flush();
-    Serial.println();
+    //Serial.println();
   
     // Check the timer.  Abort if out of time
 
     ElapsedTime = (millis()-timer)/1000.0;
-    Serial.print("Time: ");
-    Serial.println(ElapsedTime);
+    //Serial.print("Time: ");
+    Serial.print(ElapsedTime);
     if( (ElapsedTime > CUTAWAY_TIMEOUT*60) && !did_cutaway ) {
         cutAway("Timed out. ");
     }
-  /**/
-    if( GPS.fix ){// cannot test altitude without a fix
+
+    if( GPS.fix ){// cannot test altitude or longitude without a fix
       AltitudeMeters = GPS.altitude;
-      Serial.print("Altitude (m): ");
-      Serial.println(AltitudeMeters);
+      //Serial.print("Altitude (m): ");
+      //Serial.println(AltitudeMeters);
       if( (AltitudeMeters > CUTAWAY_ALTITUDE) && !did_cutaway) {
         cutAway("Above ceiling. ");
       }
+      Serial.print("   Longitude: ");
+      Serial.print(GPS.longitudeDegrees);
+      if( GPS.longitudeDegrees > -73.825 ){
+        cutAway("   Passed geofence.   ");
+      }
+      Serial.println(".  ");
     }
-  /**/
   }
 }
 
