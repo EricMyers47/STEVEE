@@ -19,7 +19,7 @@ class Point3D:
        print ("     %f,%f,%.1f" % ( self.lon, self.lat,self.alt) )
 
 # TODO: change this to read either name on command line, or from stdin
-filename = "GPSLOG13.TXT"
+filename = "GPSLOG14.TXT"
 
 try: 
   fd = open(filename)

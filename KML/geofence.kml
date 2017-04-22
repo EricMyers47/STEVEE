@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>GeoFences</name>
+    <description>Sample data from Ultimate GPS Shield for Arduino: Eric's drive home.
+    </description>
+    <Style id="yellowLineGreenPoly">
+      <LineStyle>
+        <color>7f00ffff</color>
+        <width>4</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>7f00ff00</color>
+      </PolyStyle>
+    </Style>
+    <Placemark>
+      <name>73.5W</name>
+      <description>Line N-S at 73.5W</description>
+      <styleUrl>#yellowLineGreenPoly</styleUrl>
+      <LineString>
+        <extrude>1</extrude>
+        <tessellate>1</tessellate>
+        <altitudeMode>absolute</altitudeMode>
+        <coordinates>
+     -73.5,42.0,5000
+     -73.5,40.0,5000
+       </coordinates>
+      </LineString>
+    </Placemark>
+    <Placemark>
+      <name>74.0W</name>
+      <description>Line N-S at 74.0W</description>
+      <styleUrl>#yellowLineGreenPoly</styleUrl>
+      <LineString>
+        <extrude>1</extrude>
+        <tessellate>1</tessellate>
+        <altitudeMode>absolute</altitudeMode>
+        <coordinates>
+     -74.0,42.0,5000
+     -74.0,40.0,5000
+       </coordinates>
+      </LineString>
+    </Placemark>
+    <Placemark>
+      <name>TestFence 73.925W</name>
+      <description>Test Fence 73.925W</description>
+      <styleUrl>#redLineGreenPoly</styleUrl>
+      <LineString>
+        <extrude>1</extrude>
+        <tessellate>1</tessellate>
+        <altitudeMode>absolute</altitudeMode>
+        <coordinates>
+     -73.925,42.0,5000
+     -73.925,40.0,5000
+       </coordinates>
+      </LineString>
+    </Placemark>
+    <Placemark>
+      <name>TestFence 73.825W</name>
+      <description>Test Fence 73.825W (Apple Valley)?</description>
+      <styleUrl>#redLineGreenPoly</styleUrl>
+      <LineString>
+        <extrude>1</extrude>
+        <tessellate>1</tessellate>
+        <altitudeMode>absolute</altitudeMode>
+        <coordinates>
+     -73.825,42.0,5000
+     -73.825,40.0,5000
+       </coordinates>
+      </LineString>
+    </Placemark>
+  </Document>
+</kml>
